@@ -23,6 +23,9 @@ class _QuakesAppState extends State<QuakesApp> {
   void initState() {
     super.initState();
     _quakesData = Network().getQuakes();
+
+    print("amla khatib");
+
   }
 
   @override
@@ -51,6 +54,7 @@ class _QuakesAppState extends State<QuakesApp> {
             target: LatLng(36.1083333, -117.8608333), zoom: _zoomVal),
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
+          print("mao created");
         },
         markers: Set<Marker>.of(_markers),
       ),
@@ -74,14 +78,17 @@ class _QuakesAppState extends State<QuakesApp> {
   }
 
   Widget _zoomPlus(){
-    return Align(
-      alignment: Alignment.topRight,
-      child: IconButton(
-        icon: Icon(FontAwesomeIcons.searchPlus, color: Colors.black87,),
-        onPressed: (){
-          _zoomVal--;
-          _animateCamera(_zoomVal);
-        },
+    return Padding(
+      padding: const EdgeInsets.only(top: 38.0),
+      child: Align(
+        alignment: Alignment.topRight,
+        child: IconButton(
+          icon: Icon(FontAwesomeIcons.searchPlus, color: Colors.black87,),
+          onPressed: (){
+            _zoomVal--;
+            _animateCamera(_zoomVal);
+          },
+        ),
       ),
     );
   }
@@ -115,6 +122,5 @@ class _QuakesAppState extends State<QuakesApp> {
       CameraPosition(target: LatLng(40.712776, -74.005974), zoom: _zoomVal))
     );
   }
-
 
 }
